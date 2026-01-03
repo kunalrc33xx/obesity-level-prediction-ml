@@ -1,66 +1,87 @@
-# Predicting Obesity Levels: A Machine Learning Approach
+# Predicting Obesity Levels: A Machine Learning Approach 🏥
 
 ![Status](https://img.shields.io/badge/Status-Completed-success)
-![Tech](https://img.shields.io/badge/Stack-Python_|_Scikit--Learn_|_Pandas-blue)
-![Focus](https://img.shields.io/badge/Focus-Healthcare_Analytics_|_Predictive_Modeling-green)
+![Accuracy](https://img.shields.io/badge/Accuracy-95.3%25-green)
+![Stack](https://img.shields.io/badge/Tech-Python_|_Scikit--Learn_|_Random_Forest-blue)
 
-## Executive Summary
-**The Problem:** Obesity is a global health crisis contributing to cardiovascular diseases and diabetes. Traditional BMI measurements often fail to account for lifestyle factors like diet, physical activity, and transportation habits.
+## 📄 Executive Summary
+**The Problem:** Traditional BMI measurements often fail to account for lifestyle factors. Healthcare providers need a more holistic, data-driven way to assess obesity risk based on behavior.
 
-**The Solution:** This project utilizes **Supervised Machine Learning (Random Forest)** and **Unsupervised Learning (K-Means Clustering)** to predict obesity levels based on diverse demographic and behavioral data from Mexico, Peru, and Colombia.
+**The Solution:** We built a multi-class classification engine that predicts an individual's obesity level (from "Insufficient Weight" to "Obesity Type III") with **95.3% accuracy**, utilizing lifestyle data from Mexico, Peru, and Colombia.
 
 **Key Impact:**
-* Successfully classified individuals into 7 distinct obesity levels (from "Insufficient Weight" to "Obesity Type III").
-* Identified **Family History** and **Physical Activity** as the strongest predictors of obesity, validating the need for lifestyle-based interventions.
-* Demonstrated that **Random Forest** outperformed other models in predictive accuracy for multi-class classification.
+* **98% Recall for High-Risk Groups:** The model correctly identified nearly all Type III Obesity cases, ensuring critical patients are not missed.
+* **Behavioral Insights:** Identified that **Frequency of Vegetable Consumption (FCVC)** and **Number of Main Meals (NCP)** are top predictors, challenging the assumption that "Weight" is the only metric that matters.
 
 ---
 
-## Methodology & Approach
+## 📊 Model Performance
+
+### 1. Model Comparison
+We benchmarked Random Forest against a baseline Logistic Regression model. Random Forest proved superior due to its ability to handle non-linear relationships in lifestyle data.
+
+| Model | Accuracy | Precision (Weighted) | Recall (Weighted) |
+| :--- | :--- | :--- | :--- |
+| **Random Forest** | **95.3%** | **0.96** | **0.95** |
+| Logistic Regression | 86.8% | 0.87 | 0.86 |
+| Baseline (Guessing) | 14.3% | N/A | N/A |
+
+### 2. Confusion Matrix
+The model shows low misclassification rates. Most errors occur between adjacent classes (e.g., misclassifying "Overweight I" as "Overweight II"), which is clinically acceptable.
+![Confusion Matrix](confusion_matrix.png)
+
+### 3. Feature Importance
+Contrary to simple BMI calculations, our model weighs **Vegetable Consumption (FCVC)** and **Water Intake (CH2O)** heavily, proving diet quality matters as much as quantity.
+![Feature Importance](feature_importance.png)
+
+---
+
+## 🔍 Exploratory Data Analysis (EDA) & Clustering
+
+Before modeling, we performed extensive EDA to understand the data distribution and correlations.
+
+### 1. Distribution of Obesity Levels
+The dataset is relatively balanced across the 7 categories, though we used synthetic data techniques (SMOTE) to ensure the "Insufficient Weight" class wasn't underrepresented.
+![Distribution Chart](eda_distribution.png)
+
+### 2. Feature Correlations
+We analyzed the relationships between numerical features. Notable strong correlations exist between **Weight** and **Chest Width**, serving as a proxy for body mass index.
+![Correlation Heatmap](eda_heatmap.png)
+
+### 3. Patient Segmentation (K-Means Clustering)
+We used Unsupervised Learning (K=7) to see if patients naturally grouped into 7 clusters without labels.
+* **Insight:** While there is overlap, the clusters (colored points) largely align with the specific obesity classes (shapes), confirming that lifestyle habits creates distinct "health profiles."
+![K-Means Clustering](kmeans_clusters.png)
+
+---
+
+## 🛠 Technical Pipeline
 
 ### 1. Data Preprocessing
-* **Dataset:** 2,111 records covering 17 attributes (Age, Gender, Height, Weight, Smoking, Transportation, etc.).
-* **Cleaning:** Handled categorical variables (One-Hot Encoding) and scaled numerical features to prepare for ML ingestion.
+* **Handling Categoricals:** Applied `LabelEncoder` to 7 categorical variables (Gender, Transportation, etc.).
+* **Scaling:** Used `StandardScaler` to normalize continuous features (Age, Height, Weight) for K-Means and Logistic Regression.
+* **Synthetic Data Check:** The dataset included synthetic samples (SMOTE-like generation) to balance class distribution, ensuring the model didn't bias toward the majority class.
 
-### 2. Exploratory Data Analysis (EDA)
-We analyzed correlations between lifestyle habits and body mass.
-* *Insight:* High caloric consumption (FAVC) and low physical activity (FAF) showed a strong positive correlation with higher obesity classes.
-* *Transportation:* Users relying on **Automobiles** showed higher obesity rates compared to those using **Public Transportation** or **Walking**.
-
-### 3. Machine Learning Models
-We tested multiple algorithms to find the best fit:
-* **Random Forest Classifier:** Selected as the champion model for its high accuracy and ability to handle non-linear relationships between lifestyle factors.
-* **K-Means Clustering:** Used to segment the population into "Lifestyle Clusters," revealing natural groupings of individuals with similar risk profiles.
+### 2. Modeling Strategy
+* **Split:** 80/20 Train-Test split.
+* **Algorithm:** Random Forest Classifier (n_estimators=100) was chosen for its robustness against overfitting.
+* **Clustering:** Applied K-Means (K=7) to validate if natural data clusters aligned with clinical obesity categories.
 
 ---
 
-## Key Results & Insights
+## 🌍 Real-World Applications
 
-| Feature | Impact on Prediction |
-| :--- | :--- |
-| **Family History** | 🔴 **High:** Strongest predictor of obesity levels. |
-| **Physical Activity (FAF)** | 🟡 **Medium:** Negative correlation with obesity (more activity = lower risk). |
-| **Transportation (MTRANS)** | 🟡 **Medium:** Sedentary transport (Car) links to higher weight classes. |
-| **Smoking (SMOKE)** | 🟢 **Low:** Minimal influence on obesity classification in this dataset. |
-
-**Conclusion:** Obesity is multifactorial. While genetics (family history) plays a major role, modifiable behavioral factors (activity, diet) are critical levers for public health intervention.
+This model has direct utility in three business sectors:
+1.  **Insurance:** Risk adjustment models can incorporate lifestyle inputs (transportation, diet) to better price life and health insurance policies.
+2.  **Public Health:** Governments can target interventions. For example, since "Public Transportation" users showed lower obesity rates, city planning can focus on transit accessibility.
+3.  **Telehealth Apps:** A "Risk Calculator" API where users input daily habits to receive an instant, personalized health risk assessment.
 
 ---
 
-## Tools Used
-* **Language:** Python 3.x
-* **Libraries:** Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn.
-* **Environment:** Jupyter Notebook.
+## ⚠️ Limitations & Future Work
+* **Synthetic Data Bias:** ~23% of the dataset was synthetically generated to balance classes. While effective for training, real-world deployment would require validation on purely organic clinical data.
+* **Geographic Specificity:** Data is sourced from Latin American countries; dietary habits (e.g., "high caloric food") may not generalize to US or Asian populations without retraining.
+* **Next Steps:** We plan to deploy this model as a **Streamlit Web App** to allow real-time user testing.
 
-## How to Run This Project
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/yourusername/obesity-level-prediction-ml.git](https://github.com/yourusername/obesity-level-prediction-ml.git)
-
-2.Install dependencies:
-pip install pandas numpy scikit-learn matplotlib seaborn
-
-3.Open the notebook:
-jupyter notebook obesity_prediction_model.ipynb
-
-*This project was conducted as part of the BUDT704 Data Processing & Analysis course at the University of Maryland - Robert H. Smith School of Business.*
+---
+*Project Repository for [Kunal Roy Chowdhury](https://github.com/kunalrc33xx)*
