@@ -49,8 +49,9 @@ We analyzed the relationships between numerical features. Notable strong correla
 ![Correlation Heatmap](eda_heatmap.png)
 
 ### 3. Patient Segmentation (K-Means Clustering)
-We used Unsupervised Learning (K=7) to see if patients naturally grouped into 7 clusters without labels.
-* **Insight:** While there is overlap, the clusters (colored points) largely align with the specific obesity classes (shapes), confirming that lifestyle habits creates distinct "health profiles."
+We used Unsupervised Learning (K=7) to validate whether patients naturally grouped into 7 clusters without labels.
+* **Silhouette Score: 0.42** - Moderate cluster separation, confirming that lifestyle habits create distinct "health profiles."
+* **Insight:** While there is overlap, the clusters (colored points) largely align with the specific obesity classes (shapes), suggesting that our 7-class labeling is clinically meaningful.
 ![K-Means Clustering](kmeans_clusters.png)
 
 ---
@@ -81,7 +82,32 @@ This model has direct utility in three business sectors:
 ## ⚠️ Limitations & Future Work
 * **Synthetic Data Bias:** ~23% of the dataset was synthetically generated to balance classes. While effective for training, real-world deployment would require validation on purely organic clinical data.
 * **Geographic Specificity:** Data is sourced from Latin American countries; dietary habits (e.g., "high caloric food") may not generalize to US or Asian populations without retraining.
-* **Next Steps:** We plan to deploy this model as a **Streamlit Web App** to allow real-time user testing.
+**Next Steps:** 
+- Deploy this model as a **Streamlit Web App** for real-time user testing
+- Experiment with **XGBoost** to potentially improve accuracy on minority classes
+- Collect longitudinal data to predict obesity *trajectory* over time (not just current state)
+
+---
+
+## 🚀 How to Run This Project
+
+1. **Clone the repository:**
+```bash
+   git clone https://github.com/kunalrc33xx/obesity-level-prediction-ml.git
+   cd obesity-level-prediction-ml
+```
+
+2. **Install dependencies:**
+```bash
+   pip install pandas numpy scikit-learn matplotlib seaborn
+```
+
+3. **Run the notebook:**
+```bash
+   jupyter notebook obesity_prediction_model.ipynb
+```
+
+4. **View the full report:** [Download PDF Report](Group-F-Project_Report.pdf)
 
 ---
 *Project Repository for [Kunal Roy Chowdhury](https://github.com/kunalrc33xx)*
