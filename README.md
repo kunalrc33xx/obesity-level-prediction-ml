@@ -56,3 +56,11 @@ We tested multiple algorithms to find the best fit:
 1. Clone the repository:
    ```bash
    git clone [https://github.com/yourusername/obesity-level-prediction-ml.git](https://github.com/yourusername/obesity-level-prediction-ml.git)
+
+2.Install dependencies:
+pip install pandas numpy scikit-learn matplotlib seaborn
+
+3.Open the notebook:
+jupyter notebook obesity_prediction_model.ipynb
+
+*This project was conducted as part of the BUDT704 Data Processing & Analysis course at the University of Maryland - Robert H. Smith School of Business.*
