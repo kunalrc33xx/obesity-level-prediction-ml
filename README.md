@@ -1,10 +1,10 @@
-# Predicting Obesity Levels: A Machine Learning Approach 🏥
+# Predicting Obesity Levels: A Machine Learning Approach
 
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 ![Tech](https://img.shields.io/badge/Stack-Python_|_Scikit--Learn_|_Pandas-blue)
 ![Focus](https://img.shields.io/badge/Focus-Healthcare_Analytics_|_Predictive_Modeling-green)
 
-## 📄 Executive Summary
+## Executive Summary
 **The Problem:** Obesity is a global health crisis contributing to cardiovascular diseases and diabetes. Traditional BMI measurements often fail to account for lifestyle factors like diet, physical activity, and transportation habits.
 
 **The Solution:** This project utilizes **Supervised Machine Learning (Random Forest)** and **Unsupervised Learning (K-Means Clustering)** to predict obesity levels based on diverse demographic and behavioral data from Mexico, Peru, and Colombia.
@@ -16,7 +16,7 @@
 
 ---
 
-## 📊 Methodology & Approach
+## Methodology & Approach
 
 ### 1. Data Preprocessing
 * **Dataset:** 2,111 records covering 17 attributes (Age, Gender, Height, Weight, Smoking, Transportation, etc.).
@@ -34,7 +34,7 @@ We tested multiple algorithms to find the best fit:
 
 ---
 
-## 🚀 Key Results & Insights
+## Key Results & Insights
 
 | Feature | Impact on Prediction |
 | :--- | :--- |
@@ -47,12 +47,12 @@ We tested multiple algorithms to find the best fit:
 
 ---
 
-## 🛠 Tools Used
+## Tools Used
 * **Language:** Python 3.x
 * **Libraries:** Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn.
 * **Environment:** Jupyter Notebook.
 
-## 💻 How to Run This Project
+## How to Run This Project
 1. Clone the repository:
    ```bash
    git clone [https://github.com/yourusername/obesity-level-prediction-ml.git](https://github.com/yourusername/obesity-level-prediction-ml.git)
