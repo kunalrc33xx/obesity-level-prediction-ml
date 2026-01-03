@@ -53,7 +53,6 @@ We tested multiple algorithms to find the best fit:
 * **Environment:** Jupyter Notebook.
 
 ## 💻 How to Run This Project
-1. Clone the repository:```bash
-   git clone [https://github.com/yourusername/obesity-level-prediction-ml.git](https://github.com/yourusername/obesity-level-prediction-ml.git)
+1. Clone the repository:
    ```bash
    git clone [https://github.com/yourusername/obesity-level-prediction-ml.git](https://github.com/yourusername/obesity-level-prediction-ml.git)
